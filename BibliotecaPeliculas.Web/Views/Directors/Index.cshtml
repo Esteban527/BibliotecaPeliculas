@@ -1,0 +1,31 @@
+﻿@model IEnumerable<LibraryFilms.Web.Data.Entities.Director>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Directores</h1>
+
+
+
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+                @foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Description</td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+           
+
+
