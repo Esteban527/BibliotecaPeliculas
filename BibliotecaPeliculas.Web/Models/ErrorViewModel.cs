@@ -1,4 +1,4 @@
-namespace BibliotecaPeliculas.Web.Models
+namespace LibraryFilms.Web.Models
 {
     public class ErrorViewModel
     {

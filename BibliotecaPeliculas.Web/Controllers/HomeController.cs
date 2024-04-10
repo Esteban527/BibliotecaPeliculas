@@ -1,8 +1,8 @@
-﻿using BibliotecaPeliculas.Web.Models;
+﻿using LibraryFilms.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BibliotecaPeliculas.Web.Controllers
+namespace LibraryFilms.Web.Controllers
 {
     public class HomeController : Controller
     {
