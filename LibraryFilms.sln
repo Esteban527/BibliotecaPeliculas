@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
+<<<<<<< HEAD
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryFilms.Web", "LibraryFilms.Web\LibraryFilms.Web.csproj", "{25557863-6A43-464A-8EF7-39BE8F66BE48}"
+=======
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryFilms.Web", "BibliotecaPeliculas.Web\LibraryFilms.Web.csproj", "{BE802E2E-CD78-409C-89E3-6BAA834F3583}"
+>>>>>>> 38a3c655c01ec7e3f7457f28f9a0531148b9031c
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +17,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{25557863-6A43-464A-8EF7-39BE8F66BE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25557863-6A43-464A-8EF7-39BE8F66BE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25557863-6A43-464A-8EF7-39BE8F66BE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25557863-6A43-464A-8EF7-39BE8F66BE48}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{BE802E2E-CD78-409C-89E3-6BAA834F3583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE802E2E-CD78-409C-89E3-6BAA834F3583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE802E2E-CD78-409C-89E3-6BAA834F3583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE802E2E-CD78-409C-89E3-6BAA834F3583}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 38a3c655c01ec7e3f7457f28f9a0531148b9031c
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+<<<<<<< HEAD
 		SolutionGuid = {E5271319-B625-490D-9713-8F24E0584EE2}
+=======
+		SolutionGuid = {03C46154-9BE9-4A4A-B126-69FEA865E709}
+>>>>>>> 38a3c655c01ec7e3f7457f28f9a0531148b9031c
 	EndGlobalSection
 EndGlobal
