@@ -48,6 +48,63 @@ namespace LibraryFilms.Web.Migrations
 
                     b.ToTable("Directors");
                 });
+
+            modelBuilder.Entity("LibraryFilms.Web.Data.Entities.Role", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(32)
+                    .HasColumnType("nvarchar(32)");
+
+                b.HasKey("Id");
+
+                b.ToTable("Roles");
+            });
+
+            modelBuilder.Entity("LibraryFilms.Web.Data.Entities.User", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(32)
+                    .HasColumnType("nvarchar(32)");
+
+                b.Property<string>("Password")
+                    .IsRequired()
+                    .HasMaxLength(32)
+                    .HasColumnType("nvarchar(32)");
+
+                b.Property<int>("RoleId")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.HasIndex("RoleId");
+
+                b.ToTable("Users");
+            });
+
+            modelBuilder.Entity("LibraryFilms.Web.Data.Entities.User", b =>
+            {
+                b.HasOne("LibraryFilms.Web.Data.Entities.Role", "Role")
+                    .WithMany()
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Role");
+            });
 #pragma warning restore 612, 618
         }
     }
