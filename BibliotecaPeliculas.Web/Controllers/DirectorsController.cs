@@ -1,4 +1,5 @@
-﻿using LibraryFilms.Web.Data;
+﻿using Humanizer;
+using LibraryFilms.Web.Data;
 using LibraryFilms.Web.Data.Entities;
 using LibraryFilms.Web.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace LibraryFilms.Web.Controllers
         public async Task<IActionResult> Index()
         {
             IEnumerable<Director> list = await _context.Directors.ToListAsync();
-            
+
             return View(list);
         }
 
@@ -35,6 +36,10 @@ namespace LibraryFilms.Web.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(dto);
+                }
                 Director director = new Director
                 {
                     FirstName = dto.FirstName,
@@ -54,9 +59,91 @@ namespace LibraryFilms.Web.Controllers
 
             }
 
-    }
-            
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit([FromRoute] int id)
+        {
+            try
+            {
+                Director director = await _context.Directors.FirstOrDefaultAsync(d => d.Id == id);
+
+                if (director is null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                DirectorDTO dto = new DirectorDTO
+                {
+                    FirstName = director.FirstName,
+                    LastName = director.LastName,
+                    Description = director.Description,
+                };
+
+                return View(dto);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(DirectorDTO dto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(dto);
+                }
+                Director director = await _context.Directors.FirstOrDefaultAsync(d => d.Id == dto.Id);
+
+                if (director is null)
+                {
+                    return NotFound();
+                }
+                director.FirstName = dto.FirstName;
+                director.LastName = dto.LastName;
+                director.Description = dto.Description;
+
+                _context.Directors.Update(director);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
 
-    }
+
+        }
+
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([FromRoute] int id)
+		{
+			try
+			{
+				Director director = await _context.Directors.FirstOrDefaultAsync(d => d.Id == id);
+
+				if (director is null)
+				{
+					return RedirectToAction(nameof(Index));
+				}
+
+                _context.Directors.Remove(director);
+				await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+			}
+			catch (Exception ex)
+			{
+				return RedirectToAction(nameof(Index));
+			}
+
+		}
+	}
 }

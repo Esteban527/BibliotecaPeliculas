@@ -5,27 +5,73 @@
 
 <h1>Directores</h1>
 
+<a class="btn  btn-info"  asp-action="Create">Nuevo director</a>
 
-
-        <table class="table table-bordered mt-3">
+       <table class="table table-bordered mt-3">
             <thead>
                 <tr>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Descripcion</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
                 @foreach (var item in Model)
                 {
                         <tr>
                             <td>@item.FirstName</td>
                             <td>@item.LastName</td>
                             <td>@item.Description</td>
+                            <td>
+                                <d class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</d>
+                                <form asp-action="Delete" asp-route-id="@item.Id" style="display:contents">
+                                    <button class="btn btn-danger btnDelete">Eliminar </button>
+                                </form>
+                            </td>
                         </tr>
                 }
             </tbody>
         </table>
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function() {
+
+            $('.btnDelete').click(function (event) {
+
+                event.preventDefault();
+                
+                Swal.fire({
+                    title: "Desea eliminar el director?",
+                    text: "No podra revertirlo",
+                    icon: "question"
+                    showCancelButton: true,
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        const form = $(this).closet('form');
+
+                        form.submit();
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+
+
+    </script>
+ 
+}
+
+        
            
 
 
