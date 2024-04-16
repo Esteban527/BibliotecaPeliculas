@@ -7,7 +7,7 @@ namespace LibraryFilms.Web.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(32, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres")]
+        [MaxLength(128, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres")]
         [Required(ErrorMessage = "El campo {0} es requerido")]
 
         public string Name { get; set; }

@@ -1,26 +1,30 @@
 ﻿@model LibraryFilms.Web.DTOs.UserDTO
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Nuevo Usuario";
 }
 
 <h1>Nuevo Usuario</h1>
 
 <form asp-action="Create" method="POST">
     <div class="mb-3">
-        <label class="form-label">Usuario</label>
+        <label class="form-label">Nombre</label>
         <input type="text" class="form-control" asp-for="Name" placeholder="Usuario..">
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
+
     <div class="mb-3">
         <label class="form-label">Contraseña</label>
         <input type="text" class="form-control" asp-for="Password" placeholder="Contraseña..">
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+
     <div class="mb-3">
-        <label class="form-label">Rol</label>
-        <input type="text" class="form-control" asp-for="Role" placeholder="Rol..">
-        <span asp-validation-for="Role" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="RoleId" class="form-label"></label>
+            <select asp-for="RoleId" asp-items="Model.Roles" class="form-control"></select>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
+        </div>   
     </div>
 
     <button class="btn btn-primary">Guardar</button>

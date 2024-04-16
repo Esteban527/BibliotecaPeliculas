@@ -2,6 +2,7 @@
 using LibraryFilms.Web.Data.Entities;
 using LibraryFilms.Web.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryFilms.Web.Controllers
@@ -18,7 +19,8 @@ namespace LibraryFilms.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<User> list = await _context.Users.ToListAsync();
+            IEnumerable<User> list = await _context.Users.Include(b=> b.Role)
+                                                         .ToListAsync();
 
             return View(list);
         }
@@ -36,6 +38,12 @@ namespace LibraryFilms.Web.Controllers
             {
                 if (!ModelState.IsValid) 
                 { 
+                    dto.Roles = await _context.Roles.Select(a => new SelectListItem 
+                    {
+                        Text = a.Name,
+                        Value = a.Id.ToString(),
+                    }).ToListAsync();
+
                     return View(dto);
                 }
 
@@ -43,7 +51,7 @@ namespace LibraryFilms.Web.Controllers
                 {
                     Name = dto.Name,
                     Password = dto.Password,
-                    Role = dto.Role,
+                    Role = await _context.Roles.FirstOrDefaultAsync(a => a.Id == dto.RoleId)
                 };
 
                 await _context.Users.AddAsync(user);
@@ -62,7 +70,8 @@ namespace LibraryFilms.Web.Controllers
         {
             try
             {
-                User user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+                User? user = await _context.Users.Include(b => b.Role)
+                                                .FirstOrDefaultAsync(a => a.Id == id);
 
                 if (user is null) 
                 {
@@ -74,8 +83,12 @@ namespace LibraryFilms.Web.Controllers
                     Id = id,
                     Name = user.Name,
                     Password = user.Password,
-                    Role = user.Role,
 
+                    Roles = await _context.Roles.Select(a => new SelectListItem 
+                    {
+                        Text = a.Name,
+                        Value = a.Id.ToString(),
+                    }).ToArrayAsync(),
                 };
 
                 return View(dto);
@@ -93,6 +106,12 @@ namespace LibraryFilms.Web.Controllers
             {
                 if (!ModelState.IsValid)
                 {
+                    dto.Roles = await _context.Roles.Select(a => new SelectListItem
+                    {
+                        Text = a.Name,
+                        Value = a.Id.ToString(),
+                    }).ToArrayAsync();
+
                     return View(dto);
                 }
 
@@ -105,6 +124,7 @@ namespace LibraryFilms.Web.Controllers
 
                 user.Name = dto.Name;
                 user.Password = dto.Password;
+                user.Role = await _context.Roles.FirstOrDefaultAsync(a => a.Id == dto.RoleId);
 
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();

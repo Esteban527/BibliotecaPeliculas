@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<LibraryFilms.Web.Data.Entities.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Usuarios";
 }
 
 <h1>Usuarios</h1>
@@ -24,7 +24,7 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Password</td>
-                <td>@item.Role</td>
+                <td>@item.Role.Name</td>
                 <td>
                     <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                     <form asp-action="Delete" asp-route-id="@item.Id" style="display:contents">
@@ -36,7 +36,7 @@
     </tbody>
 
 </table>
-        @* Clase9 min 48 *@
+        
 @section Scripts {
     <script>
 

@@ -21,9 +21,11 @@
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Rol</label>
-        <input type="text" class="form-control" asp-for="Role" placeholder="Rol..">
-        <span asp-validation-for="Role" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="RoleId" class="form-label"></label>
+            <select asp-for="RoleId" asp-items="Model.Roles" class="form-control"></select>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
+        </div>
     </div>
 
     <button class="btn btn-primary">Guardar</button>
