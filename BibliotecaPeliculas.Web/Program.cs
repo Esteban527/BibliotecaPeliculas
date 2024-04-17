@@ -1,3 +1,4 @@
+using LibraryFilms.Web;
 using LibraryFilms.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,11 +7,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//Data Context
-builder.Services.AddDbContext<DataContext>(cfg =>
-{
-    cfg.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
-});
+builder.AddCustomBuilderConfiguration();
+
 
 WebApplication app = builder.Build();
 
