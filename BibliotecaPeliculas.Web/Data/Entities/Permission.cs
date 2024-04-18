@@ -15,7 +15,7 @@ namespace LibraryFilms.Web.Data.Entities
         [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Description { get; set; }
 
-        public bool IsHidden { get; set; } = false;
+        //public bool IsHidden { get; set; } = false;
 
     }
 }

@@ -19,8 +19,7 @@ namespace LibraryFilms.Web.DTOs
 
         public IEnumerable<SelectListItem>? Roles { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar un rol")]
-        [Required(ErrorMessage = "El campo {0} es requerido")]
+        
         public int RoleId { get; set; }
     }
 }
