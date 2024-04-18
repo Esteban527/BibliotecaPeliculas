@@ -1,0 +1,39 @@
+﻿@model LibraryFilms.Web.DTOs.UserDTO
+
+@{
+    ViewData["Title"] = "Crear Usuario";
+}
+
+<h1>Editar Usuario</h1>
+
+<form asp-action="Edit" method="POST">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Usuario..">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="text" class="form-control" asp-for="Password" placeholder="Contraseña..">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <div class="form-group">
+            <label asp-for="RoleId" class="form-label"></label>
+            <select asp-for="RoleId" asp-items="Model.Roles" class="form-control"></select>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button class="btn btn-primary">Guardar</button>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

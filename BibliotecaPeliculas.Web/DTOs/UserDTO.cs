@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LibraryFilms.Web.Data.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
-namespace LibraryFilms.Web.Data.Entities
+namespace LibraryFilms.Web.DTOs
 {
-    public class User
+    public class UserDTO
     {
-        [Key]
         public int Id { get; set; }
 
         [MaxLength(128, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres")]
@@ -15,8 +16,11 @@ namespace LibraryFilms.Web.Data.Entities
         [Required(ErrorMessage = "El campo {0} es requerido")]
 
         public string Password { get; set; }
-        
-        public Role Role { get; set; }
 
+        public IEnumerable<SelectListItem>? Roles { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar un rol")]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        public int RoleId { get; set; }
     }
 }
