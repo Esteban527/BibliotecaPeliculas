@@ -5,9 +5,9 @@
 
 <h1>Editar director</h1>
 
-<form asp-action="Edit" method="Post">
+<form asp-action="Edit" method="POST">
 
-    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="@Model.Id" />
 
     <div class="mb-3">
 

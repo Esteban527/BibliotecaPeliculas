@@ -1,18 +1,45 @@
 ﻿@model IEnumerable<LibraryFilms.Web.Data.Entities.Director>
 @{
-    ViewData["Title"] = "Index";
-}
+    ViewData["Title"] = "Directores";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
 
-<h1>Directores</h1>
+} 
 
-<a class="btn  btn-info"  asp-action="Create">Nuevo director</a>
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-asp-controller="Home" asp-action="Dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Directores</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section dashboard">
+
+    <div class="card">
+
+        <div class="card-header py-3">
+            <div class="row">
+                <h3 class="m-0 font-weight-bold text-primary col-md-11">Crear nuevo director</h3>
+                <div class="col-md-1">
+                    <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+                </div>
+            </div>
+       </div>
+       
+       
+
+
+</section>
+
 
        <table class="table table-bordered mt-3">
             <thead>
                 <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Descripcion</th>
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,25 +64,24 @@
 @section Scripts {
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('.btnDelete').click(function (event) {
 
                 event.preventDefault();
-                
+
                 Swal.fire({
-                    title: "Desea eliminar el director?",
-                    text: "No podra revertirlo",
-                    icon: "question"
+                    title: "¿Desea eliminar el Director?",
+                    text: "No prodrá revertirlo",
+                    icon: "question",
                     showCancelButton: true,
                 }).then((result) => {
 
                     if (result.isConfirmed) {
 
-                        const form = $(this).closet('form');
+                        const form = $(this).closest('form');
 
                         form.submit();
-
                     }
 
                 });
@@ -63,9 +89,6 @@
             });
 
         });
-
-
-
 
     </script>
  

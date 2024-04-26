@@ -1,7 +1,10 @@
-﻿using Humanizer;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Humanizer;
+using LibraryFilms.Web.Core;
 using LibraryFilms.Web.Data;
 using LibraryFilms.Web.Data.Entities;
 using LibraryFilms.Web.DTOs;
+using LibraryFilms.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,18 +13,29 @@ namespace LibraryFilms.Web.Controllers
     public class DirectorsController : Controller
     {
         private readonly DataContext _context;
+        private readonly IDirectorsService _directorsService;
+        private readonly INotyfService _notifyService;
 
-        public DirectorsController(DataContext context)
+        public DirectorsController(DataContext context, IDirectorsService directorsService, INotyfService notifyService)
         {
             _context = context;
+            _directorsService = directorsService;
+            _notifyService = notifyService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Director> list = await _context.Directors.ToListAsync();
+            Response<List<Director>> response = await _directorsService.GetListAsyc();
 
-            return View(list);
+            if (!response.IsSucces)
+            {
+                _notifyService.Error(response.Message);
+                return RedirectToAction("Index", "Home");
+            }
+
+            _notifyService.Success(response.Message);
+            return View(response.Result);
         }
 
         [HttpGet]
@@ -75,6 +89,7 @@ namespace LibraryFilms.Web.Controllers
 
                 DirectorDTO dto = new DirectorDTO
                 {
+                    Id=id,
                     FirstName = director.FirstName,
                     LastName = director.LastName,
                     Description = director.Description,
