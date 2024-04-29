@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 //Data Context
 builder.Services.AddDbContext<DataContext>(cfg =>
 {
-    cfg.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
+    cfg.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection"));
 });
 
 WebApplication app = builder.Build();
