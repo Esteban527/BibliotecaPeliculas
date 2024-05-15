@@ -1,3 +1,4 @@
+using AspNetCoreHero.ToastNotification;
 using LibraryFilms.Web;
 using LibraryFilms.Web.Data;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,6 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.AddCustomBuilderConfiguration();
-
 
 WebApplication app = builder.Build();
 
@@ -27,9 +27,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseRouting();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.AddCustomConfiguration();
+
 app.Run();
+//Video Clase 16 min 42:45

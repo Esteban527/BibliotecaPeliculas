@@ -4,30 +4,29 @@
 
 namespace LibraryFilms.Web.Migrations
 {
-    public partial class CreateDirectorsTable : Migration
+    public partial class AddSectionsTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Directors",
+                name: "Sections",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    IsHidden = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Directors", x => x.Id);
+                    table.PrimaryKey("PK_Sections", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Directors");
+                name: "Sections");
         }
     }
 }
