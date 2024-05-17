@@ -39,6 +39,7 @@ namespace LibraryFilms.Web
             return builder;
         }
 
+
         private static void AddServices(this WebApplicationBuilder builder) 
         {
             //Services
@@ -75,7 +76,7 @@ namespace LibraryFilms.Web
         private static void AddService(this WebApplicationBuilder builder)
         {
             //Services
-            //builder.Services.AddScoped<ISectionsService, SectionsService>();
+            builder.Services.AddScoped<ISectionsService, SectionsService>();
             //builder.Services.AddScoped<IRolesServices, RolesServices>();
             builder.Services.AddScoped<IUsersService, UsersService>();
             builder.Services.AddTransient<SeedDB>();

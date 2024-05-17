@@ -18,12 +18,49 @@ namespace LibraryFilms.Web.Controllers
             _notify = notify;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            _notify.Success("Secciones")
             Response<List<Section>> response = await _sectionsService.GetListAsync();
 
             return View(response.Result);
+        }
+
+        [HttpGet]
+        public IActionResult Create() 
+        { 
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Section model)
+        {
+            try 
+            {
+                if(!ModelState.IsValid) 
+                {
+                    _notify.Error("Debe ajustar los errores de validación.");
+                    return View(model);
+                }
+
+                Response<Section> response = await _sectionsService.CreateAsync(model);
+
+                if (response.IsSuccess)
+                {
+                    _notify.Success(response.Message);
+                    return RedirectToAction(nameof(Index));
+                }
+
+                _notify.Error(response.Message);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                _notify.Error(ex.Message);
+                return View(model);
+            }
+
+            return View();
         }
     }
 }
