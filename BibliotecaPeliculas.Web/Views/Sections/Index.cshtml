@@ -28,26 +28,69 @@
         </div>
 
         <div class="card-body">
-
-            
             <table class="table table-bordered">
                 <thead>
                     <tr>
 
                         <th>@Html.DisplayNameFor(model => model.Name)</th>
-                        <th>@Html.DisplayNameFor(model => model.IsHidden)</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr class='@(item.IsHidden ? "table-secondary" : "")'>
                             <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                            <td>@Html.DisplayFor(modelItem => item.IsHidden)</td>
                             <td>
-                                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+
+                                @if (item.IsHidden)
+                                {
+                                    <form asp-action="Toggle" method="POST" style="display: contents;">
+                                        <input type="hidden" value="@item.Id" name="Id" />
+                                        <input type="hidden" value="false" name="Hide" />
+
+                                        <div class="tooltip-container">
+                                            <button class="btn btn-secondary btn-sm showSection">
+                                                <i class="bi bi-eye-fill" style="color:#F8F9FC;cursor: pointer;"></i>
+                                            </button>
+                                            <span class="tooltip-text">Mostrar Sección</span>
+                                        </div>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-action="Toggle" method="POST" style="display: contents;">
+                                        <input type="hidden" value="@item.Id" name="Id" />
+                                        <input type="hidden" value="true" name="Hide" />
+
+                                        <div class="tooltip-container">
+                                            <button class="btn btn-info btn-sm showSection"
+                                                    data-id="@item.Id">
+                                                <i class="bi bi-eye-slash-fill" style="color:#F8F9FC;cursor: pointer;"></i>
+                                            </button>
+                                            <span class="tooltip-text">Ocultar Sección</span>
+                                        </div>
+
+                                    </form>
+                                }
+
+
+
+                                <a asp-action="Edit" 
+                                   asp-route-id="@item.Id" 
+                                   class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <form asp-action="Delete" style="display: contents;" asp-route-Id="@item.Id" method="POST">
+
+                                    <button asp-action="Delete"
+                                            asp-route-id="@item.Id" 
+                                            class="btn btn-sm btn-danger btnDelete">
+                                                <i class="bi bi-trash"></i>
+                                    </button>
+
+                                </form>
+                                
                             </td>
                         </tr>
                     }
@@ -57,3 +100,36 @@
         </div>
     </div>
     </section>
+
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+
+            $('.btnDelete').click(function (event) {
+
+                event.preventDefault();
+
+                Swal.fire({
+                    title: "¿Desea eliminar la sección?",
+                    text: "No prodrá revertirlo",
+                    icon: "question",
+                    showCancelButton: true,
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        const form = $(this).closest('form');
+
+                        form.submit();
+                    }
+
+                });
+
+            });
+
+        });
+
+    </script>
+}
