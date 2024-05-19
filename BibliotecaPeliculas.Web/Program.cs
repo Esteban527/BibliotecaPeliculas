@@ -37,4 +37,3 @@ app.MapControllerRoute(
 app.AddCustomConfiguration();
 
 app.Run();
-//Video Clase 16 min 42:45
