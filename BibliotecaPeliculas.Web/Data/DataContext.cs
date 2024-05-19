@@ -23,11 +23,17 @@ namespace LibraryFilms.Web.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             configureIndexes(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
         }
 
         private void configureIndexes(ModelBuilder modelBuilder)
         {
+            //Sections
+            modelBuilder.Entity<Section>()
+                        .HasIndex(s => s.Name)
+                        .IsUnique();
+
             //Roles
             modelBuilder.Entity<LibraryFilmsRole>()
                         .HasIndex(s => s.Name)
