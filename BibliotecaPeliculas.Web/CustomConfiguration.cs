@@ -79,12 +79,12 @@ namespace LibraryFilms.Web
             builder.Services.AddScoped<ISectionsService, SectionsService>();
             //builder.Services.AddScoped<IRolesServices, RolesServices>();
             builder.Services.AddScoped<IUsersService, UsersService>();
-            builder.Services.AddTransient<SeedDB>();
+            builder.Services.AddTransient<SeedDb>();
 
             //Helpers
         }
 
-        #endregion
+        #endregion Builder
 
         #region App
 
@@ -93,10 +93,23 @@ namespace LibraryFilms.Web
 
             app.UseNotyf();
 
+            SeedData(app);
+
             return app;
 
         }
 
-        #endregion
+        private static void SeedData(WebApplication app)
+        {
+            IServiceScopeFactory scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+            using (IServiceScope scope = scopedFactory!.CreateScope())
+            {
+                SeedDb service = scope.ServiceProvider.GetService<SeedDb>();
+                service!.SeedAsync().Wait();
+            }
+        }
+
+        #endregion App
     }
 }
