@@ -86,6 +86,21 @@ namespace LibraryFilms.Web.Migrations
                     b.ToTable("RolePermissions");
                 });
 
+            modelBuilder.Entity("LibraryFilms.Web.Data.Entities.RoleSection", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleId", "SectionId");
+
+                    b.HasIndex("SectionId");
+
+                    b.ToTable("RoleSections");
+                });
+
             modelBuilder.Entity("LibraryFilms.Web.Data.Entities.Section", b =>
                 {
                     b.Property<int>("Id")
@@ -103,6 +118,9 @@ namespace LibraryFilms.Web.Migrations
                         .HasColumnType("nvarchar(64)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Sections");
                 });
@@ -350,6 +368,25 @@ namespace LibraryFilms.Web.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("LibraryFilms.Web.Data.Entities.RoleSection", b =>
+                {
+                    b.HasOne("LibraryFilms.Web.Data.Entities.LibraryFilmsRole", "Role")
+                        .WithMany("RoleSections")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LibraryFilms.Web.Data.Entities.Section", "Section")
+                        .WithMany("RoleSections")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("Section");
+                });
+
             modelBuilder.Entity("LibraryFilms.Web.Data.Entities.User", b =>
                 {
                     b.HasOne("LibraryFilms.Web.Data.Entities.LibraryFilmsRole", "LibraryFilmsRole")
@@ -415,11 +452,18 @@ namespace LibraryFilms.Web.Migrations
             modelBuilder.Entity("LibraryFilms.Web.Data.Entities.LibraryFilmsRole", b =>
                 {
                     b.Navigation("RolePermissions");
+
+                    b.Navigation("RoleSections");
                 });
 
             modelBuilder.Entity("LibraryFilms.Web.Data.Entities.Permission", b =>
                 {
                     b.Navigation("RolePermissions");
+                });
+
+            modelBuilder.Entity("LibraryFilms.Web.Data.Entities.Section", b =>
+                {
+                    b.Navigation("RoleSections");
                 });
 #pragma warning restore 612, 618
         }

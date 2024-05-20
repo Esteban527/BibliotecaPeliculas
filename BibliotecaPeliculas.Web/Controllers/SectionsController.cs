@@ -1,13 +1,20 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Humanizer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using LibraryFilms.Web.Core;
 using LibraryFilms.Web.Core.Pagination;
 using LibraryFilms.Web.Data.Entities;
 using LibraryFilms.Web.Requests;
 using LibraryFilms.Web.Services;
-using Microsoft.AspNetCore.Mvc;
+using LibraryFilms.Web.Core.Attributes;
+
+
 
 namespace LibraryFilms.Web.Controllers
 {
+    [Authorize]
     public class SectionsController : Controller
     {
         private readonly ISectionsService _sectionsService;
@@ -21,6 +28,7 @@ namespace LibraryFilms.Web.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorize(permission: "showSections", module: "Secciones")]
         public async Task<IActionResult> Index([FromQuery] int? recordsPerPage,
                                                [FromQuery] int? page,
                                                [FromQuery] string? filter)

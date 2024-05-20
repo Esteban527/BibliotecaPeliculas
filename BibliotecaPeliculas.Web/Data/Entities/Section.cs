@@ -12,6 +12,8 @@ namespace LibraryFilms.Web.Data.Entities
         public string Name { get; set; }
         
         public bool IsHidden { get; set; }
+
+        public ICollection<RoleSection> RoleSections { get; set; }
     }
 }
 

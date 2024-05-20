@@ -1,19 +1,20 @@
 ﻿using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+//using LibraryFilms.Core.Middlewares;
 using LibraryFilms.Web.Data;
 using LibraryFilms.Web.Data.Entities;
 using LibraryFilms.Web.Data.Seeders;
-
 using LibraryFilms.Web.Services;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.Data.Common;
+
 
 namespace LibraryFilms.Web
 {
     public static class CustomConfiguration
     {
         #region Builder
+
         public static WebApplicationBuilder AddCustomBuilderConfiguration(this WebApplicationBuilder builder)
         {
             //Data Context
@@ -21,6 +22,8 @@ namespace LibraryFilms.Web
             {
                 conf.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
             });
+
+            builder.Services.AddHttpContextAccessor();
 
             //Services
             AddServices(builder);
@@ -38,15 +41,7 @@ namespace LibraryFilms.Web
 
             return builder;
         }
-
-
-        private static void AddServices(this WebApplicationBuilder builder) 
-        {
-            //Services
-            builder.Services.AddScoped<ISectionsService, SectionsService>();
-
-            //Helpers
-        }
+        
 
         private static void AddIAM(WebApplicationBuilder builder)
         {
@@ -66,20 +61,20 @@ namespace LibraryFilms.Web
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.Name = "Auth";
-                options.LoginPath = "Account/Login"; //Ruta de incio de sesión
-                options.AccessDeniedPath = "Account/NotAuthorized"; //Ruta de acceso denegado
+                options.LoginPath = "/Account/Login"; //Ruta de incio de sesión
+                options.AccessDeniedPath = "/Account/NotAuthorized"; //Ruta de acceso denegado
             });
 
             builder.Services.AddAuthorization();
         }
 
-        private static void AddService(this WebApplicationBuilder builder)
+        private static void AddServices(this WebApplicationBuilder builder)
         {
             //Services
             builder.Services.AddScoped<ISectionsService, SectionsService>();
-            //builder.Services.AddScoped<IRolesServices, RolesServices>();
-            builder.Services.AddScoped<IUsersService, UsersService>();
             builder.Services.AddTransient<SeedDb>();
+            builder.Services.AddScoped<IUsersService, UsersService>();
+
 
             //Helpers
         }

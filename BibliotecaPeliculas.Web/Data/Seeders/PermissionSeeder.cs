@@ -13,10 +13,9 @@ namespace LibraryFilms.Web.Data.Seeders
 
         public async Task SeedAsync()
         {
+            List<Permission> permissions = new List<Permission>();
             List<Permission> sectionsPermissions = Sections();
             List<Permission> usersPermissions = Users();
-
-            List<Permission> permissions = new List<Permission>();
             permissions.AddRange(sectionsPermissions);
             permissions.AddRange(usersPermissions);
 

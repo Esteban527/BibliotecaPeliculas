@@ -1,9 +1,11 @@
-﻿using LibraryFilms.Web.Data;
-using LibraryFilms.Web.Data.Entities;
-using LibraryFilms.Web.DTOs;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Common;
+using LibraryFilms.Web.Data;
+using LibraryFilms.Web.Data.Entities;
+using LibraryFilms.Web.DTOs;
+
+using ClaimsUser = System.Security.Claims.ClaimsPrincipal;
 
 namespace LibraryFilms.Web.Services
 {
@@ -29,13 +31,14 @@ namespace LibraryFilms.Web.Services
         private readonly DataContext _context;
         private readonly SignInManager<User> _singInManager;
         private readonly UserManager<User> _userManager;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        public UsersService(UserManager<User> userManager, DataContext context, SignInManager<User> singInManager)
+        public UsersService(UserManager<User> userManager, DataContext context, SignInManager<User> singInManager, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _context = context;
             _singInManager = singInManager;
-            
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IdentityResult> AddUserAsync(User user, string password)
@@ -48,9 +51,36 @@ namespace LibraryFilms.Web.Services
             return await _userManager.ConfirmEmailAsync(user, token);
         }
 
-        public async Task<bool> CurrentUserIsAuthorizedAsync(string permision, string module)
+        public async Task<bool> CurrentUserIsAuthorizedAsync(string permission, string module)
         {
-            throw new NotImplementedException();
+            ClaimsUser? claimUser = _httpContextAccessor.HttpContext?.User;
+
+            //Valida si está logueado
+            if (claimUser is null)
+            {
+                return false;
+            }
+
+            string? userName = claimUser.Identity.Name;
+
+            User? user = await GetUserAsync(userName);
+
+            //Valida si user existe
+            if (user is null)
+            {
+                return false;
+            }
+
+            //Valida si es admin
+            if (user.LibraryFilmsRole.Name == "Administrador")
+            {
+                return true;
+            }
+
+            //Si no es administrador, valida si tiene el permiso
+            return await _context.Permissions.Include(p => p.RolePermissions)
+                                             .AnyAsync(p => (p.Module == module && p.Name == permission)
+                                                        && p.RolePermissions.Any(rp => rp.RoleId == user.LibraryFilmsRoleId)); 
         }
 
         public async Task<string> GenerateEmailConfigurationTokenAsync(User user)

@@ -10,7 +10,7 @@ namespace LibraryFilms.Web.DTOs
 
         [Display(Name = "Contraseña")]
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        [MinLength(6, ErrorMessage = "El campo {0} Ddebe tener al menos {1} carácteres")]
+        [MinLength(4, ErrorMessage = "El campo {0} Ddebe tener al menos {1} carácteres")]
         public string Password { get; set; } = null!;
 
     }

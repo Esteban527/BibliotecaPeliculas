@@ -10,7 +10,8 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a asp-controller="Index" asp-action="Dashboard">Dashboard</a></li>
+            @* <li class="breadcrumb-item active"><a asp-controller="Index" asp-action="Dashboard">Dashboard</a></li> *@
+            <li class="breadcrumb-item active"><a asp-action="Index">Secciones</a></li>
             <li class="breadcrumb-item active">Editar Sección</li>
         </ol>
     </nav>
@@ -28,9 +29,8 @@
                 <div class="col-md-12">
                     <div class="form-floating">
                         <input asp-for="Name" class="form-control" placeholder="@Html.DisplayFor(model => model.Name)">
-                        <labe>
-                                @(Html.DisplayNameFor(model => model.Name))</label>
-                            <span asp-validation-for="Name" class="text-danger"></span>
+                        <labe>@(Html.DisplayNameFor(model => model.Name))</label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="text-center">

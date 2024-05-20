@@ -75,6 +75,8 @@ namespace LibraryFilms.Web.Services
                     RecordsPerPage = list.RecordsPerPage,
                     CurrentPage = list.CurrentPage,
                     TotalPages = list.TotalPages,
+
+                    Filter = request.Filter,
                   
                 };
 
