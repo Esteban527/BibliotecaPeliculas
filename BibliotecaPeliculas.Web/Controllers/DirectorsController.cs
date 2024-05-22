@@ -7,6 +7,7 @@ using LibraryFilms.Web.DTOs;
 using LibraryFilms.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static System.Collections.Specialized.BitVector32;
 
 namespace LibraryFilms.Web.Controllers
 {
@@ -28,13 +29,6 @@ namespace LibraryFilms.Web.Controllers
         {
             Response<List<Director>> response = await _directorsService.GetListAsyc();
 
-            if (!response.IsSucces)
-            {
-                _notifyService.Error(response.Message);
-                return RedirectToAction("Index", "Home");
-            }
-
-            _notifyService.Success(response.Message);
             return View(response.Result);
         }
 
@@ -52,24 +46,26 @@ namespace LibraryFilms.Web.Controllers
             {
                 if (!ModelState.IsValid)
                 {
+                    _notifyService.Error("Debe ajustar los errores de validación.");
                     return View(dto);
                 }
-                Director director = new Director
+
+                Response<DirectorDTO> response = await _directorsService.CreateAsync(dto);
+
+                if (response.IsSuccess)
                 {
-                    FirstName = dto.FirstName,
-                    LastName = dto.LastName,
-                    Description = dto.Description
-                };
-                await _context.Directors.AddAsync(director);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    _notifyService.Success(response.Message);
+                    return RedirectToAction(nameof(Index));
+                }
+
+                _notifyService.Error(response.Message);
+                return View(dto);
+
             }
-
-
-
             catch (Exception ex)
             {
-                return RedirectToAction(nameof(Index));
+                _notifyService.Error(ex.Message);
+                return View(dto);
 
             }
 
@@ -78,29 +74,15 @@ namespace LibraryFilms.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit([FromRoute] int id)
         {
-            try
+            Response<DirectorDTO> response = await _directorsService.GetOneAsync(id);
+
+            if (!response.IsSuccess)
             {
-                Director director = await _context.Directors.FirstOrDefaultAsync(d => d.Id == id);
-
-                if (director is null)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-
-                DirectorDTO dto = new DirectorDTO
-                {
-                    Id=id,
-                    FirstName = director.FirstName,
-                    LastName = director.LastName,
-                    Description = director.Description,
-                };
-
-                return View(dto);
-            }
-            catch (Exception ex)
-            {
+                _notifyService.Error(response.Message);
                 return RedirectToAction(nameof(Index));
             }
+
+            return View(response.Result);
 
         }
 
@@ -111,28 +93,25 @@ namespace LibraryFilms.Web.Controllers
             {
                 if (!ModelState.IsValid)
                 {
+                    _notifyService.Error("Debe ajustar los errores de validación.");
                     return View(dto);
                 }
-                Director director = await _context.Directors.FirstOrDefaultAsync(d => d.Id == dto.Id);
+                Response<DirectorDTO> response = await _directorsService.EditAsync(dto);
 
-                if (director is null)
+                if (response.IsSuccess)
                 {
-                    return NotFound();
+                    _notifyService.Success(response.Message);
+                    return RedirectToAction(nameof(Index));
                 }
-                director.FirstName = dto.FirstName;
-                director.LastName = dto.LastName;
-                director.Description = dto.Description;
 
-                _context.Directors.Update(director);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _notifyService.Error(response.Errors.First());
+                return View(dto);
             }
             catch (Exception ex)
             {
-                return RedirectToAction(nameof(Index));
+                _notifyService.Error(ex.Message);
+                return View(dto);
             }
-
-
 
         }
 
@@ -140,25 +119,17 @@ namespace LibraryFilms.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Delete([FromRoute] int id)
 		{
-			try
-			{
-				Director director = await _context.Directors.FirstOrDefaultAsync(d => d.Id == id);
+            Response<DirectorDTO> response = await _directorsService.DeleteAsync(id);
 
-				if (director is null)
-				{
-					return RedirectToAction(nameof(Index));
-				}
-
-                _context.Directors.Remove(director);
-				await _context.SaveChangesAsync();
-
+            if (response.IsSuccess)
+            {
+                _notifyService.Success(response.Message);
                 return RedirectToAction(nameof(Index));
-			}
-			catch (Exception ex)
-			{
-				return RedirectToAction(nameof(Index));
-			}
+            }
 
-		}
+            _notifyService.Error(response.Errors.First());
+            return RedirectToAction(nameof(Index));
+
+        }
 	}
 }
