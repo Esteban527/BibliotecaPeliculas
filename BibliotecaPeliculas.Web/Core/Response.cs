@@ -1,4 +1,4 @@
-﻿namespace LibraryFilms.Web.Core
+namespace LibraryFilms.Web.Core
 {
     public class Response<T>
     {

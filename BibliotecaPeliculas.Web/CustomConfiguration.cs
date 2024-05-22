@@ -1,4 +1,4 @@
-﻿using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using LibraryFilms.Web.Data;
 using LibraryFilms.Web.Services;
@@ -38,7 +38,7 @@ namespace LibraryFilms.Web
             // Services
             builder.Services.AddScoped<IDirectorsService, DirectorsService>();
             builder.Services.AddScoped<IFilmsService,FilmsService>();
-
+            builder.Services.AddScoped<IPermissionsService, PermissionsService>();
             //Helpers
         }
         #endregion Builder
