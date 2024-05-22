@@ -1,0 +1,97 @@
+﻿@model IEnumerable<LibraryFilms.Web.Data.Entities.Film>
+
+@{
+    ViewData["Title"] = "Peliculas";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-asp-controller="Home" asp-action="Dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Peliculas</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section dashboard">
+
+    <div class="card">
+
+        <div class="card-header py-3">
+            <div class="row">
+                <h3 class="m-0 font-weight-bold text-primary col-md-11">Peliculas </h3>
+                <div class="col-md-1">
+                    <a asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i></a>
+                </div>
+            </div>
+       </div>
+       
+       
+
+
+</section>
+
+
+       <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th> @Html.DisplayNameFor(model => model.Title)</th>
+                    <th>@Html.DisplayNameFor(model => model.Genre) </th>
+                    <th>@Html.DisplayNameFor(model => model.PublishDate)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                        <tr>
+                            <td> @Html.DisplayFor(modelItem => item.Title)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Genre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PublishDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                            <td>
+                                <d class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</d>
+                                <form asp-action="Delete" asp-route-id="@item.Id" style="display:contents">
+                                    <button class="btn btn-danger btnDelete">Eliminar </button>
+                                </form>
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+
+            $('.btnDelete').click(function (event) {
+
+                event.preventDefault();
+
+                Swal.fire({
+                    title: "¿Desea eliminar el Director?",
+                    text: "No prodrá revertirlo",
+                    icon: "question",
+                    showCancelButton: true,
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        const form = $(this).closest('form');
+
+                        form.submit();
+                    }
+
+                });
+
+            });
+
+        });
+
+    </script>
+}
+

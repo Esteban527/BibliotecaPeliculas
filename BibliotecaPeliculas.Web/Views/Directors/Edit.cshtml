@@ -1,0 +1,46 @@
+﻿@model LibraryFilms.Web.DTOs.DirectorDTO
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar director</h1>
+
+<form asp-action="Edit" method="POST">
+
+    <input type="hidden" asp-for="@Model.Id" />
+
+    <div class="mb-3">
+
+        <label class="form-label">Nombres</label>
+        <input type="text" class="form-control" asp-for="FirstName" placeholder="Nombres...">
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" asp-for="LastName" placeholder="Apellidos...">
+        <span asp-validation-for="LastName" class="text-danger"></span>
+
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">Descripcion</label>
+        <input type="text" class="form-control" asp-for="Description" placeholder="Descripcion...">
+        <span asp-validation-for="Description" class="text-danger"></span>
+
+
+    </div>
+
+    <button class="btn btn-primary">Guardar</button>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

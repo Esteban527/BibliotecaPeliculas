@@ -1,0 +1,25 @@
+﻿@model LibraryFilms.Web.DTOs.RoleDTO
+
+@{
+    ViewData["Title"] = "Nuevo Rol";
+}
+
+<h1>Nuevo Rol</h1>
+
+
+<form asp-action="Create" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Rol</label>
+        <input type="text" class="form-control" asp-for="Name" placeholder="Rol..">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    
+    <button class="btn btn-primary">Guardar</button>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
