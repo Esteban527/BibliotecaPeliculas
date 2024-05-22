@@ -1,0 +1,31 @@
+﻿@inject LibraryFilms.Web.Services.IUsersService _usersService
+
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " @(ViewContext.RouteData.Values["Controller"].ToString() == "Home"
+                                                  && ViewContext.RouteData.Values["Action"].ToString() == "Dashboard"
+                                                  ? "" : "Collapsed")" asp-action="Dashboard" asp-controller="Home">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        @if (await _usersService.CurrentUserIsAuthorizedAsync("showSections", "Secciones"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Sections"
+                                                && ViewContext.RouteData.Values["Action"].ToString() == "Index"
+                                                ? "" : "Collapsed")" asp-controller="Sections" asp-action="Index">
+                    <i class="bi bi-puzzle.fill"></i>
+                    <span>Secciones</span>
+                </a>
+            </li>
+        }
+        @* Clase 17 min 6 *@
+        
+    </ul>
+
+</aside>

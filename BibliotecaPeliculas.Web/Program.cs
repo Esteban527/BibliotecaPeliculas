@@ -1,3 +1,5 @@
+using AspNetCoreHero.ToastNotification;
+using LibraryFilms.Web;
 using LibraryFilms.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,13 +8,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//Data Context
-builder.Services.AddDbContext<DataContext>(cfg =>
-{
-    cfg.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection"));
-});
+builder.AddCustomBuilderConfiguration();
 
 WebApplication app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -27,10 +26,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Dashboard}/{id?}");
+
+app.AddCustomConfiguration();
 
 app.Run();
