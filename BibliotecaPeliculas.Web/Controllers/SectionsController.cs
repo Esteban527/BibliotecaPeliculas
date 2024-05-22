@@ -29,15 +29,15 @@ namespace LibraryFilms.Web.Controllers
 
         [HttpGet]
         [CustomAuthorize(permission: "showSections", module: "Secciones")]
-        public async Task<IActionResult> Index([FromQuery] int? recordsPerPage,
+        public async Task<IActionResult> Index([FromQuery] int? RecordsPerPage,
                                                [FromQuery] int? page,
-                                               [FromQuery] string? filter)
+                                               [FromQuery] string? Filter)
         {
             PaginationRequest paginationRequest = new PaginationRequest
             {
-                RecordsPerPage = recordsPerPage ?? 15,
+                RecordsPerPage = RecordsPerPage ?? 15,
                 Page = page ?? 1,
-                Filter = filter,
+                Filter = Filter,
             };
 
             Response<PaginationResponse<Section>> response = await _sectionsService.GetListAsync(paginationRequest);
@@ -46,12 +46,14 @@ namespace LibraryFilms.Web.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorize(permission: "showSections", module: "Secciones")]
         public IActionResult Create() 
         { 
             return View();
         }
 
         [HttpPost]
+        [CustomAuthorize(permission: "createSecciones", module: "Secciones")]
         public async Task<IActionResult> Create(Section model)
         {
             try 
@@ -81,9 +83,9 @@ namespace LibraryFilms.Web.Controllers
 
             return View();
         }
-        //--->>>
+        
         [HttpGet("{id}")]
-        //[CustomAuthorize(permission: "showSections", module: "Secciones")]
+        [CustomAuthorize(permission: "createSecciones", module: "Secciones")]
         public async Task<IActionResult> Edit([FromRoute] int id)
         {
             Response<Section> response = await _sectionsService.GetOneAsync(id);
@@ -98,7 +100,7 @@ namespace LibraryFilms.Web.Controllers
         }
 
         [HttpPost]
-        //[CustomAuthorize(permission: "updateSections", module: "Secciones")]
+        [CustomAuthorize(permission: "updateSections", module: "Secciones")]
         public async Task<IActionResult> Update(Section model)
         {
             try
@@ -128,7 +130,7 @@ namespace LibraryFilms.Web.Controllers
         }
 
         [HttpPost("{id}")]
-        //[CustomAuthorize(permission: "updateSections", module: "Secciones")]
+        [CustomAuthorize(permission: "updateSections", module: "Secciones")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             Response<Section> response = await _sectionsService.DeleteAsync(id);
@@ -144,7 +146,7 @@ namespace LibraryFilms.Web.Controllers
         }
 
         [HttpPost]
-        //[CustomAuthorize(permission: "updateSections", module: "Secciones")]
+        [CustomAuthorize(permission: "updateSections", module: "Secciones")]
         public async Task<IActionResult> Toggle(int Id, bool Hide)
         {
             ToggleSectionRequest request = new ToggleSectionRequest { Id = Id, Hide = Hide };

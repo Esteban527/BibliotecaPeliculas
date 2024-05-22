@@ -7,6 +7,7 @@ using LibraryFilms.Web.Data;
 using LibraryFilms.Web.Data.Entities;
 using LibraryFilms.Web.Data.Seeders;
 using LibraryFilms.Web.Services;
+using LibraryFilms.Web.Helpers;
 
 
 namespace LibraryFilms.Web
@@ -77,6 +78,7 @@ namespace LibraryFilms.Web
 
 
             //Helpers
+            builder.Services.AddScoped<IConverterHelper, ConverterHelper>();
         }
 
         #endregion Builder

@@ -1,4 +1,5 @@
-﻿
+﻿@inject LibraryFilms.Web.Services.IUsersService _usersService
+
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -12,15 +13,19 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Sections"
+        @if (await _usersService.CurrentUserIsAuthorizedAsync("showSections", "Secciones"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Sections"
                                                 && ViewContext.RouteData.Values["Action"].ToString() == "Index"
                                                 ? "" : "Collapsed")" asp-controller="Sections" asp-action="Index">
-                <i class="bi bi-grid"></i>
-                <span>Secciones</span>
-            </a>
-        </li>
-        @* Video Clase 12 min 14:40 *@
+                    <i class="bi bi-grid"></i>
+                    <span>Secciones</span>
+                </a>
+            </li>
+        }
+        @* Clase 17 min 6 *@
+        
     </ul>
 
 </aside>
