@@ -1,6 +1,24 @@
-﻿namespace LibraryFilms.Web.Helpers
+﻿using LibraryFilms.Web.Data.Entities;
+using LibraryFilms.Web.DTOs;
+
+namespace LibraryFilms.Web.Helpers
 {
-    public class IConverterHelper
+    public interface IConverterHelper
     {
+        public ActorDTO ActorDTO(Actor actor);
+    }
+
+    public class ConverterHelper : IConverterHelper
+    {
+        public ActorDTO ActorDTO(Actor actor)
+        {
+            return new ActorDTO
+            {
+                Id = Guid.Parse(actor.Id),
+                FirstName = actor.FirstName,
+                LastName = actor.LastName,
+                Description = actor.Description,
+            };
+        }
     }
 }
