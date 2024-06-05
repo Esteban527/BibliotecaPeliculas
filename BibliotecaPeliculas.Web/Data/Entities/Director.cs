@@ -21,5 +21,7 @@ namespace LibraryFilms.Web.Data.Entities
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Descripcion ")]
         public string Description { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
     }
 }

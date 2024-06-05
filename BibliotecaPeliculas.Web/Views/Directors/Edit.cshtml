@@ -1,6 +1,7 @@
 ﻿@model LibraryFilms.Web.DTOs.DirectorDTO
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
 <h1>Editar director</h1>
@@ -36,6 +37,7 @@
     </div>
 
     <button class="btn btn-primary">Guardar</button>
+    <a asp-action="Index">Volver a la lista</a>
 
 </form>
 

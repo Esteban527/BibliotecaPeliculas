@@ -34,34 +34,37 @@
 </section>
 
 
-       <table class="table table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th> @Html.DisplayNameFor(model => model.Title)</th>
-                    <th>@Html.DisplayNameFor(model => model.Genre) </th>
-                    <th>@Html.DisplayNameFor(model => model.PublishDate)</th>
-                    <th>@Html.DisplayNameFor(model => model.Description)</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                        <tr>
-                            <td> @Html.DisplayFor(modelItem => item.Title)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Genre)</td>
-                            <td>@Html.DisplayFor(modelItem => item.PublishDate)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                            <td>
-                                <d class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</d>
-                                <form asp-action="Delete" asp-route-id="@item.Id" style="display:contents">
-                                    <button class="btn btn-danger btnDelete">Eliminar </button>
-                                </form>
-                            </td>
-                        </tr>
-                }
-            </tbody>
-        </table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titulo </th>
+            <th>Genero</th>
+            <th>Fecha de publicacion</th>
+            <th>Director</th>
+            <th>Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => film.Title)</td>
+                <td>@film.Genre</td>
+                <td>@film.PublishDate.ToString("yyyy-MM-dd")</td>
+                <td>@film.Director.FullName</td>
+                <td>@film.Description</td>
+
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@film.Id">Editar</a>
+                    <form asp-action="Delete" asp-route-id="@film.Id" style="display: inline;">
+                        <button type="submit" class="btn btn-danger btnDelete">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
 
 @section Scripts {
     <script>

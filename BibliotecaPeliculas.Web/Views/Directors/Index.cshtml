@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<LibraryFilms.Web.Data.Entities.Director>
+
 @{
     ViewData["Title"] = "Directores";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
@@ -44,20 +45,22 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                        <tr>
-                            <td>@item.FirstName</td>
-                            <td>@item.LastName</td>
-                            <td>@item.Description</td>
-                            <td>
-                                <d class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</d>
-                                <form asp-action="Delete" asp-route-id="@item.Id" style="display:contents">
-                                    <button class="btn btn-danger btnDelete">Eliminar </button>
-                                </form>
-                            </td>
-                        </tr>
-                }
+       
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <d class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</d>
+                        <form asp-action="Delete" asp-route-id="@item.Id" style="display:contents">
+                            <button class="btn btn-danger btnDelete">Eliminar </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+               
             </tbody>
         </table>
 

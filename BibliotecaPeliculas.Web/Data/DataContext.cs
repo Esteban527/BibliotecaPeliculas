@@ -9,9 +9,6 @@ namespace LibraryFilms.Web.Data
         {
         }
         public DbSet<Director> Directors { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Permission> Permissions { get; set; }
         public DbSet<Film> Films { get; set; }
     }
 }

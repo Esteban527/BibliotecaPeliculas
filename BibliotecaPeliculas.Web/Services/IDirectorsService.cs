@@ -6,7 +6,6 @@ using LibraryFilms.Web.DTOs;
 using LibraryFilms.Web.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using static System.Collections.Specialized.BitVector32;
 
 namespace LibraryFilms.Web.Services
 {

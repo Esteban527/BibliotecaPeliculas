@@ -38,7 +38,6 @@ namespace LibraryFilms.Web
             // Services
             builder.Services.AddScoped<IDirectorsService, DirectorsService>();
             builder.Services.AddScoped<IFilmsService,FilmsService>();
-            builder.Services.AddScoped<IPermissionsService, PermissionsService>();
             //Helpers
         }
         #endregion Builder
