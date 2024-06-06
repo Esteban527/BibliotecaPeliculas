@@ -1,4 +1,4 @@
-﻿namespace LibraryFilms.Web.Core.Pagination
+namespace LibraryFilms.Web.Core.Pagination
 {
     public class PaginationRequest
     {

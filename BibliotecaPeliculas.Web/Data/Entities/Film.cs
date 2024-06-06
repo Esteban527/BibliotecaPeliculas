@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryFilms.Web.Data.Entities
 {
@@ -21,9 +22,12 @@ namespace LibraryFilms.Web.Data.Entities
         [Display(Name = "Fecha de estreno")]
         public DateTime PublishDate { get; set; }
 
-        [MaxLength(24, ErrorMessage = "El campo {0} debe tener minimo {1} carácteres")]
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        [Display(Name = "Director ")]
+        [Display(Name = "Director")]
+        public int DirectorId { get; set; } // Clave foránea para Director
+
+
+        [ForeignKey("DirectorId")]
         public Director Director { get; set; } //relaciona la tabla de director con film
 
 

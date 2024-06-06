@@ -1,4 +1,4 @@
-﻿using LibraryFilms.Web.Core.Extensions;
+using LibraryFilms.Web.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryFilms.Web.Core.Pagination

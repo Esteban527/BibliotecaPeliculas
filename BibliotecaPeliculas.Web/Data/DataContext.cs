@@ -18,6 +18,7 @@ namespace LibraryFilms.Web.Data
         public DbSet<LibraryFilmsRole> LibraryFilmsRoles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
 <<<<<<< HEAD
+        public DbSet<Director> Directors { get; set; }
         public DbSet<Film> Films { get; set; }
 =======
         public DbSet<RolePermission> RolePermissions { get; set; }
