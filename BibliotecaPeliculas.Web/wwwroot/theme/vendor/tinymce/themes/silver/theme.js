@@ -1,6 +1,10 @@
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * TinyMCE version 7.0.0 (2024-03-20)
+=======
+ * TinyMCE version 7.0.1 (2024-04-10)
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
  * TinyMCE version 7.0.1 (2024-04-10)
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -3201,7 +3205,10 @@
       return ClosestOrAncestor(is, ancestor$1, scope, predicate, isRoot);
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
     const sibling$1 = (scope, predicate) => {
       const element = scope.dom;
       if (!element.parentNode) {
@@ -3209,6 +3216,9 @@
       }
       return child$1(SugarElement.fromDom(element.parentNode), x => !eq(scope, x) && predicate(x));
     };
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
     const child$1 = (scope, predicate) => {
       const pred = node => predicate(SugarElement.fromDom(node));
@@ -3237,6 +3247,10 @@
     const first$1 = selector => one(selector);
     const ancestor = (scope, selector, isRoot) => ancestor$1(scope, e => is(e, selector), isRoot);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    const sibling = (scope, selector) => sibling$1(scope, e => is(e, selector));
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
     const sibling = (scope, selector) => sibling$1(scope, e => is(e, selector));
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -22998,7 +23012,10 @@
     const factory$6 = (detail, components, _spec) => {
       let toolbarDrawerOpenState = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
       const toggleStatusbar = editorContainer => {
         sibling(editorContainer, '.tox-statusbar').each(statusBar => {
           if (get$e(statusBar, 'display') === 'none' && get$f(statusBar, 'aria-hidden') === 'true') {
@@ -23010,6 +23027,9 @@
           }
         });
       };
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
       const apis = {
         getSocket: comp => {
@@ -23097,6 +23117,10 @@
           parts$a.getPart(comp, detail, 'editorContainer').each(editorContainer => {
             const element = editorContainer.element;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            toggleStatusbar(element);
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
             toggleStatusbar(element);
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -23111,6 +23135,10 @@
           parts$a.getPart(comp, detail, 'editorContainer').each(editorContainer => {
             const element = editorContainer.element;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            toggleStatusbar(element);
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
             toggleStatusbar(element);
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -25222,8 +25250,12 @@
         floatContainer.on(container => {
           const maxWidth = editorMaxWidthOpt.getOrThunk(() => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const bodyMargin = parseToInt(get$e(body(), 'margin-left')).getOr(0);
             return get$c(body()) - absolute$3(targetElm).left + bodyMargin;
+=======
+            return getBounds$3().width - viewport$1(targetElm).left - 10;
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
             return getBounds$3().width - viewport$1(targetElm).left - 10;
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -25232,7 +25264,11 @@
         });
       };
 <<<<<<< HEAD
+<<<<<<< HEAD
       const updateChromePosition = isOuterContainerWidthRestored => {
+=======
+      const updateChromePosition = (isOuterContainerWidthRestored, prevScroll) => {
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
       const updateChromePosition = (isOuterContainerWidthRestored, prevScroll) => {
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -25257,7 +25293,11 @@
           const left = getLeft();
           const widthProperties = someIf(isOuterContainerWidthRestored, Math.ceil(mainUi.outerContainer.element.dom.getBoundingClientRect().width)).filter(w => w > minimumToolbarWidth).map(toolbarWidth => {
 <<<<<<< HEAD
+<<<<<<< HEAD
             const scroll = get$b();
+=======
+            const scroll = prevScroll.getOr(get$b());
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
             const scroll = prevScroll.getOr(get$b());
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -25268,7 +25308,11 @@
             }
             return { width: width + 'px' };
 <<<<<<< HEAD
+<<<<<<< HEAD
           }).getOr({});
+=======
+          }).getOr({ width: 'max-content' });
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
           }).getOr({ width: 'max-content' });
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -25309,6 +25353,10 @@
           updateChromeWidth();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        const prevScroll = get$b();
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
         const prevScroll = get$b();
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -25318,14 +25366,20 @@
         }
         if (!useFixedToolbarContainer) {
 <<<<<<< HEAD
+<<<<<<< HEAD
           updateChromePosition(isOuterContainerWidthRestored);
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
           const currentScroll = get$b();
           const optScroll = someIf(prevScroll.left !== currentScroll.left, prevScroll);
           updateChromePosition(isOuterContainerWidthRestored, optScroll);
           optScroll.each(scroll => {
             to(scroll.left, currentScroll.top);
           });
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         }
         if (isSticky) {
@@ -28428,10 +28482,14 @@
           components: flatten([
             editorComponents,
 <<<<<<< HEAD
+<<<<<<< HEAD
             isInline ? [] : [
               memBottomAnchorBar.asSpec(),
               ...statusbar.toArray()
             ]
+=======
+            isInline ? [] : [memBottomAnchorBar.asSpec()]
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
             isInline ? [] : [memBottomAnchorBar.asSpec()]
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -28462,12 +28520,18 @@
           components: [
             editorContainer,
 <<<<<<< HEAD
+<<<<<<< HEAD
             ...isInline ? [] : [partViewWrapper],
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             ...isInline ? [] : [
               partViewWrapper,
               ...statusbar.toArray()
             ],
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             partThrobber
           ],

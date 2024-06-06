@@ -2,11 +2,15 @@
 
 namespace LibraryFilms.Web.Data.Entities
 {
+<<<<<<< HEAD
 <<<<<<<< HEAD:BibliotecaPeliculas.Web/Data/Entities/Rol.cs
     public class Rol
 ========
     public class Section
 >>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93:BibliotecaPeliculas.Web/Data/Entities/Section.cs
+=======
+    public class Section
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
     {
         public int Id { get; set; }
 

@@ -1,6 +1,10 @@
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * TinyMCE version 7.0.0 (2024-03-20)
+=======
+ * TinyMCE version 7.0.1 (2024-04-10)
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
  * TinyMCE version 7.0.1 (2024-04-10)
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93

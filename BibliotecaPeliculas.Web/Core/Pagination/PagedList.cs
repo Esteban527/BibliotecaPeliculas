@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using LibraryFilms.Web.Core.Extensions;
+=======
+﻿using LibraryFilms.Web.Core.Extensions;
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryFilms.Web.Core.Pagination

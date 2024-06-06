@@ -44,7 +44,11 @@
       "exportToPNG": "下載 PNG",
       "exportToCSV": "下載 CSV",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "menu": "菜單",
+=======
+      "menu": "選單",
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
       "menu": "選單",
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93

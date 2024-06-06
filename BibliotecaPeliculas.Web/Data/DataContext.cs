@@ -3,6 +3,9 @@ using LibraryFilms.Web.Data.Entities;
 =======
 ﻿using LibraryFilms.Web.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -18,9 +21,12 @@ namespace LibraryFilms.Web.Data
         public DbSet<LibraryFilmsRole> LibraryFilmsRoles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
         public DbSet<Director> Directors { get; set; }
         public DbSet<Film> Films { get; set; }
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         public DbSet<RolePermission> RolePermissions { get; set; }
         public DbSet<RoleSection> RoleSections { get; set; }
         public DbSet<Section> Sections { get; set; }
@@ -82,6 +88,9 @@ namespace LibraryFilms.Web.Data
                         .WithMany(s => s.RoleSections)
                         .HasForeignKey(rs => rs.SectionId);
         }
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
     }
 }

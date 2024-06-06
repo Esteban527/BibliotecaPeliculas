@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 namespace LibraryFilms.Web.Core.Pagination
+=======
+﻿namespace LibraryFilms.Web.Core.Pagination
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 {
     public class PaginationResponse<T> where T : class
     {

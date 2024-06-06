@@ -1,8 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using LibraryFilms.Web.Data;
 using LibraryFilms.Web.Services;
+=======
+﻿using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.AspNetCore.Identity;
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
 ﻿using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
@@ -23,14 +29,20 @@ namespace LibraryFilms.Web
     {
         #region Builder
 <<<<<<< HEAD
+<<<<<<< HEAD
         public static WebApplicationBuilder AddCustomBuilderConfiguration(this WebApplicationBuilder builder)
         {
             //Data context
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 
         public static WebApplicationBuilder AddCustomBuilderConfiguration(this WebApplicationBuilder builder)
         {
             //Data Context
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             builder.Services.AddDbContext<DataContext>(conf =>
             {
@@ -38,11 +50,14 @@ namespace LibraryFilms.Web
             });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             // Services
             AddServices(builder);
 
             // Toast
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             builder.Services.AddHttpContextAccessor();
 
             //Services
@@ -52,6 +67,9 @@ namespace LibraryFilms.Web
             AddIAM(builder);
 
             //Toast
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             builder.Services.AddNotyf(config =>
             {
@@ -98,13 +116,46 @@ namespace LibraryFilms.Web
 
             builder.Services.AddAuthorization();
         }
+        
 
+<<<<<<< HEAD
+=======
+        private static void AddIAM(WebApplicationBuilder builder)
+        {
+            builder.Services.AddIdentity<User, IdentityRole>(x =>
+            {
+                x.User.RequireUniqueEmail = true;
+                x.Password.RequireDigit = false;
+                x.Password.RequiredUniqueChars = 0;
+                x.Password.RequireLowercase = false;
+                x.Password.RequireUppercase = false;
+                x.Password.RequireNonAlphanumeric = false;
+                x.Password.RequiredLength = 4;
+            })
+            .AddEntityFrameworkStores<DataContext>()
+            .AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "Auth";
+                options.LoginPath = "/Account/Login"; //Ruta de incio de sesión
+                options.AccessDeniedPath = "/Account/NotAuthorized"; //Ruta de acceso denegado
+            });
+
+            builder.Services.AddAuthorization();
+        }
+
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         private static void AddServices(this WebApplicationBuilder builder)
         {
             //Services
             builder.Services.AddScoped<ISectionsService, SectionsService>();
             builder.Services.AddTransient<SeedDb>();
             builder.Services.AddScoped<IUsersService, UsersService>();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 
 
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -112,6 +163,10 @@ namespace LibraryFilms.Web
             builder.Services.AddScoped<IConverterHelper, ConverterHelper>();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
 
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -122,11 +177,14 @@ namespace LibraryFilms.Web
         public static WebApplication AddCustomConfiguration(this WebApplication app)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             app.UseNotyf();
 
             return app;
         }
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 
             app.UseNotyf();
 
@@ -147,6 +205,9 @@ namespace LibraryFilms.Web
             }
         }
 
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         #endregion App
     }

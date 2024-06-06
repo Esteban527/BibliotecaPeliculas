@@ -1,6 +1,10 @@
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * TinyMCE version 7.0.0 (2024-03-20)
+=======
+ * TinyMCE version 7.0.1 (2024-04-10)
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
  * TinyMCE version 7.0.1 (2024-04-10)
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -23959,12 +23963,18 @@
     const setupEditorInput = (editor, api) => {
       const update = last(api.load, 50);
 <<<<<<< HEAD
+<<<<<<< HEAD
       editor.on('input', () => {
 =======
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
       editor.on('input', e => {
         if (e.inputType === 'insertCompositionText' && !editor.composing) {
           return;
         }
+<<<<<<< HEAD
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
+=======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         update.throttle();
       });
@@ -31328,8 +31338,13 @@
       suffix: null,
       majorVersion: '7',
 <<<<<<< HEAD
+<<<<<<< HEAD
       minorVersion: '0.0',
       releaseDate: '2024-03-20',
+=======
+      minorVersion: '0.1',
+      releaseDate: '2024-04-10',
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
       minorVersion: '0.1',
       releaseDate: '2024-04-10',
@@ -31422,7 +31437,11 @@
         const findTargets = options => {
           if (Env.browser.isIE() || Env.browser.isEdge()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             initError('TinyMCE does not support the browser you are using. For a list of supported' + ' browsers please see: https://www.tiny.cloud/docs/tinymce/6/support/#supportedwebbrowsers');
+=======
+            initError('TinyMCE does not support the browser you are using. For a list of supported' + ' browsers please see: https://www.tiny.cloud/docs/tinymce/7/support/#supportedwebbrowsers');
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
             initError('TinyMCE does not support the browser you are using. For a list of supported' + ' browsers please see: https://www.tiny.cloud/docs/tinymce/7/support/#supportedwebbrowsers');
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93

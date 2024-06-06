@@ -1,6 +1,10 @@
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * TinyMCE version 7.0.0 (2024-03-20)
+=======
+ * TinyMCE version 7.0.1 (2024-04-10)
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
  * TinyMCE version 7.0.1 (2024-04-10)
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -810,7 +814,12 @@
     const getClosestListHost = (editor, elm) => {
       const parentBlocks = editor.dom.getParents(elm, editor.dom.isBlock);
 <<<<<<< HEAD
+<<<<<<< HEAD
       const parentBlock = find(parentBlocks, elm => isListHost(editor.schema, elm));
+=======
+      const isNotForcedRootBlock = elm => elm.nodeName.toLowerCase() !== getForcedRootBlock(editor);
+      const parentBlock = find(parentBlocks, elm => isNotForcedRootBlock(elm) && isListHost(editor.schema, elm));
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
       const isNotForcedRootBlock = elm => elm.nodeName.toLowerCase() !== getForcedRootBlock(editor);
       const parentBlock = find(parentBlocks, elm => isNotForcedRootBlock(elm) && isListHost(editor.schema, elm));

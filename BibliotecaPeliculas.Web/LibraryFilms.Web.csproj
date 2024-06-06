@@ -9,6 +9,10 @@
   <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.29" />
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.29" />
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
@@ -24,7 +28,13 @@
 
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Folder Include="wwwroot\theme\" />
+=======
+    <Folder Include="Views\Permissions\" />
+    <Folder Include="Views\Roles\" />
+    <Folder Include="Views\Users\" />
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
     <Folder Include="Views\Permissions\" />
     <Folder Include="Views\Roles\" />

@@ -1,6 +1,9 @@
 using AspNetCoreHero.ToastNotification;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using AspNetCoreHero.ToastNotification.Extensions;
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 using LibraryFilms.Web;
@@ -15,8 +18,11 @@ builder.Services.AddControllersWithViews();
 builder.AddCustomBuilderConfiguration();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 =======
 >>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 WebApplication app = builder.Build();
