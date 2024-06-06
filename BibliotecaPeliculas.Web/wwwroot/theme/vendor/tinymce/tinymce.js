@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * TinyMCE version 7.0.0 (2024-03-20)
+=======
+ * TinyMCE version 7.0.1 (2024-04-10)
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
  */
 
 (function () {
@@ -23954,7 +23958,14 @@
 
     const setupEditorInput = (editor, api) => {
       const update = last(api.load, 50);
+<<<<<<< HEAD
       editor.on('input', () => {
+=======
+      editor.on('input', e => {
+        if (e.inputType === 'insertCompositionText' && !editor.composing) {
+          return;
+        }
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         update.throttle();
       });
       editor.on('keydown', e => {
@@ -31316,8 +31327,13 @@
       documentBaseURL: null,
       suffix: null,
       majorVersion: '7',
+<<<<<<< HEAD
       minorVersion: '0.0',
       releaseDate: '2024-03-20',
+=======
+      minorVersion: '0.1',
+      releaseDate: '2024-04-10',
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
       i18n: I18n,
       activeEditor: null,
       focusedEditor: null,
@@ -31405,7 +31421,11 @@
         };
         const findTargets = options => {
           if (Env.browser.isIE() || Env.browser.isEdge()) {
+<<<<<<< HEAD
             initError('TinyMCE does not support the browser you are using. For a list of supported' + ' browsers please see: https://www.tiny.cloud/docs/tinymce/6/support/#supportedwebbrowsers');
+=======
+            initError('TinyMCE does not support the browser you are using. For a list of supported' + ' browsers please see: https://www.tiny.cloud/docs/tinymce/7/support/#supportedwebbrowsers');
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             return [];
           } else if (isQuirksMode) {
             initError('Failed to initialize the editor as the document is not in standards mode. ' + 'TinyMCE requires standards mode.');

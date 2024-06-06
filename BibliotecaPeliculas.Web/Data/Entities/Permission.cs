@@ -6,16 +6,20 @@ namespace LibraryFilms.Web.Data.Entities
     {
         public int Id { get; set; }
 
-        [Display(Name="Permisos")]
+        [Display(Name = "Permiso")]
         [MaxLength(64, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres")]
         [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Name { get; set; }
 
-        [MaxLength(128, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres")]
-        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Descripción")]
+        [MaxLength(512, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres")]
         public string Description { get; set; }
 
-        public bool IsHidden { get; set; } = false;
+        [Display(Name = "Modulo")]
+        [MaxLength(64, ErrorMessage = "El campo {0} debe tener maximo {1} caracteres")]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        public string Module { get; set; } = null;
 
+        public ICollection<RolePermission> RolePermissions { get; set; }
     }
 }

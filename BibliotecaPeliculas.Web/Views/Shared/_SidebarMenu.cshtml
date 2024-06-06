@@ -1,16 +1,29 @@
+<<<<<<< HEAD
 ﻿<aside id="sidebar" class="sidebar">
+=======
+﻿@inject LibraryFilms.Web.Services.IUsersService _usersService
+
+<aside id="sidebar" class="sidebar">
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
+<<<<<<< HEAD
             <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home"
                                                 && ViewContext.RouteData.Values["Action"].ToString() == "Dashboard"
                                                 ? "" : "collapsed")" asp-action="Dashboard" asp-controller="Home">
+=======
+            <a class="nav-link " @(ViewContext.RouteData.Values["Controller"].ToString() == "Home"
+                                                  && ViewContext.RouteData.Values["Action"].ToString() == "Dashboard"
+                                                  ? "" : "Collapsed")" asp-action="Dashboard" asp-controller="Home">
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
         </li>
 
+<<<<<<< HEAD
         <li class="nav-item">
             <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Directors"
                                                 && ViewContext.RouteData.Values["Action"].ToString() == "Index"
@@ -29,6 +42,21 @@
             </a>
         </li>
 
+=======
+        @if (await _usersService.CurrentUserIsAuthorizedAsync("showSections", "Secciones"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Sections"
+                                                && ViewContext.RouteData.Values["Action"].ToString() == "Index"
+                                                ? "" : "Collapsed")" asp-controller="Sections" asp-action="Index">
+                    <i class="bi bi-puzzle.fill"></i>
+                    <span>Secciones</span>
+                </a>
+            </li>
+        }
+        @* Clase 17 min 6 *@
+        
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
     </ul>
 
 </aside>

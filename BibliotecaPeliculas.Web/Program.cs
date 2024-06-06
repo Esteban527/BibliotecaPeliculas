@@ -1,5 +1,8 @@
 using AspNetCoreHero.ToastNotification;
+<<<<<<< HEAD
 using AspNetCoreHero.ToastNotification.Extensions;
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 using LibraryFilms.Web;
 using LibraryFilms.Web.Data;
 using LibraryFilms.Web.Services;
@@ -11,8 +14,11 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.AddCustomBuilderConfiguration();
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
 WebApplication app = builder.Build();
 
 
@@ -29,6 +35,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,5 +1,9 @@
 /**
+<<<<<<< HEAD
  * TinyMCE version 7.0.0 (2024-03-20)
+=======
+ * TinyMCE version 7.0.1 (2024-04-10)
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
  */
 
 (function () {
@@ -3196,6 +3200,16 @@
       const is = (s, test) => test(s);
       return ClosestOrAncestor(is, ancestor$1, scope, predicate, isRoot);
     };
+<<<<<<< HEAD
+=======
+    const sibling$1 = (scope, predicate) => {
+      const element = scope.dom;
+      if (!element.parentNode) {
+        return Optional.none();
+      }
+      return child$1(SugarElement.fromDom(element.parentNode), x => !eq(scope, x) && predicate(x));
+    };
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
     const child$1 = (scope, predicate) => {
       const pred = node => predicate(SugarElement.fromDom(node));
       const result = find$5(scope.dom.childNodes, pred);
@@ -3222,6 +3236,10 @@
 
     const first$1 = selector => one(selector);
     const ancestor = (scope, selector, isRoot) => ancestor$1(scope, e => is(e, selector), isRoot);
+<<<<<<< HEAD
+=======
+    const sibling = (scope, selector) => sibling$1(scope, e => is(e, selector));
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
     const child = (scope, selector) => child$1(scope, e => is(e, selector));
     const descendant = (scope, selector) => one(selector, scope);
     const closest$1 = (scope, selector, isRoot) => {
@@ -22979,6 +22997,20 @@
 
     const factory$6 = (detail, components, _spec) => {
       let toolbarDrawerOpenState = false;
+<<<<<<< HEAD
+=======
+      const toggleStatusbar = editorContainer => {
+        sibling(editorContainer, '.tox-statusbar').each(statusBar => {
+          if (get$e(statusBar, 'display') === 'none' && get$f(statusBar, 'aria-hidden') === 'true') {
+            remove$6(statusBar, 'display');
+            remove$7(statusBar, 'aria-hidden');
+          } else {
+            set$8(statusBar, 'display', 'none');
+            set$9(statusBar, 'aria-hidden', 'true');
+          }
+        });
+      };
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
       const apis = {
         getSocket: comp => {
           return parts$a.getPart(comp, detail, 'socket');
@@ -23064,6 +23096,10 @@
           }
           parts$a.getPart(comp, detail, 'editorContainer').each(editorContainer => {
             const element = editorContainer.element;
+<<<<<<< HEAD
+=======
+            toggleStatusbar(element);
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             set$8(element, 'display', 'none');
             set$9(element, 'aria-hidden', 'true');
           });
@@ -23074,6 +23110,10 @@
           }
           parts$a.getPart(comp, detail, 'editorContainer').each(editorContainer => {
             const element = editorContainer.element;
+<<<<<<< HEAD
+=======
+            toggleStatusbar(element);
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             remove$6(element, 'display');
             remove$7(element, 'aria-hidden');
           });
@@ -25181,13 +25221,21 @@
       const updateChromeWidth = () => {
         floatContainer.on(container => {
           const maxWidth = editorMaxWidthOpt.getOrThunk(() => {
+<<<<<<< HEAD
             const bodyMargin = parseToInt(get$e(body(), 'margin-left')).getOr(0);
             return get$c(body()) - absolute$3(targetElm).left + bodyMargin;
+=======
+            return getBounds$3().width - viewport$1(targetElm).left - 10;
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
           });
           set$8(container.element, 'max-width', maxWidth + 'px');
         });
       };
+<<<<<<< HEAD
       const updateChromePosition = isOuterContainerWidthRestored => {
+=======
+      const updateChromePosition = (isOuterContainerWidthRestored, prevScroll) => {
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         floatContainer.on(container => {
           const toolbar = OuterContainer.getToolbar(mainUi.outerContainer);
           const offset = calcToolbarOffset(toolbar);
@@ -25208,14 +25256,22 @@
           });
           const left = getLeft();
           const widthProperties = someIf(isOuterContainerWidthRestored, Math.ceil(mainUi.outerContainer.element.dom.getBoundingClientRect().width)).filter(w => w > minimumToolbarWidth).map(toolbarWidth => {
+<<<<<<< HEAD
             const scroll = get$b();
+=======
+            const scroll = prevScroll.getOr(get$b());
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             const availableWidth = window.innerWidth - (left - scroll.left);
             const width = Math.max(Math.min(toolbarWidth, availableWidth), minimumToolbarWidth);
             if (availableWidth < toolbarWidth) {
               set$8(mainUi.outerContainer.element, 'width', width + 'px');
             }
             return { width: width + 'px' };
+<<<<<<< HEAD
           }).getOr({});
+=======
+          }).getOr({ width: 'max-content' });
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
           const baseProperties = {
             position: 'absolute',
             left: Math.round(left) + 'px',
@@ -25252,12 +25308,25 @@
         if (!useFixedToolbarContainer) {
           updateChromeWidth();
         }
+<<<<<<< HEAD
+=======
+        const prevScroll = get$b();
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         const isOuterContainerWidthRestored = useFixedToolbarContainer ? false : restoreOuterContainerWidth();
         if (isSplitToolbar) {
           OuterContainer.refreshToolbar(mainUi.outerContainer);
         }
         if (!useFixedToolbarContainer) {
+<<<<<<< HEAD
           updateChromePosition(isOuterContainerWidthRestored);
+=======
+          const currentScroll = get$b();
+          const optScroll = someIf(prevScroll.left !== currentScroll.left, prevScroll);
+          updateChromePosition(isOuterContainerWidthRestored, optScroll);
+          optScroll.each(scroll => {
+            to(scroll.left, currentScroll.top);
+          });
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
         }
         if (isSticky) {
           floatContainer.on(stickyAction);
@@ -28358,10 +28427,14 @@
         const editorContainer = OuterContainer.parts.editorContainer({
           components: flatten([
             editorComponents,
+<<<<<<< HEAD
             isInline ? [] : [
               memBottomAnchorBar.asSpec(),
               ...statusbar.toArray()
             ]
+=======
+            isInline ? [] : [memBottomAnchorBar.asSpec()]
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
           ])
         });
         const isHidden = isDistractionFree(editor);
@@ -28388,7 +28461,14 @@
           },
           components: [
             editorContainer,
+<<<<<<< HEAD
             ...isInline ? [] : [partViewWrapper],
+=======
+            ...isInline ? [] : [
+              partViewWrapper,
+              ...statusbar.toArray()
+            ],
+>>>>>>> 0641eec8b871546eb8cb60b6758f909ba7f46f93
             partThrobber
           ],
           behaviours: derive$1([
