@@ -17,14 +17,30 @@ namespace LibraryFilms.Web.Data.Seeders
         {
             List<Actor> actors = new List<Actor>
             {
-                new Actor { FirstName = "General" },
-                new Actor { FirstName = "Telecomunicaciones" },
-                new Actor { FirstName = "Hacking" },
+                new Actor { FirstName = "Ryan" },
+                new Actor { FirstName = "Chris" },
+                new Actor { FirstName = "Timothée" },
+
+                new Actor { LastName = "Reynolds" },
+                new Actor { LastName = "Pratt" },
+                new Actor { LastName = "Chalamet" },
             };
 
             foreach (Actor actor in actors)
             {
                 bool exists = await _context.Actors.AnyAsync(a => a.FirstName == actor.FirstName);
+
+                if (!exists)
+                {
+                    await _context.Actors.AddAsync(actor);
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
+            foreach (Actor actor in actors)
+            {
+                bool exists = await _context.Actors.AnyAsync(a => a.LastName == actor.LastName);
 
                 if (!exists)
                 {
